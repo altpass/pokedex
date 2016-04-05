@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pokemonListApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokedex</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
+	
+	<script src="node_modules/angular/angular.js"></script>
+  	<script src="js/controllers.js"></script>
+  	
+  	
+</head>
+<body data-ng-controller="pokemonListCtrl">
+	<header>
+		<h1>Pokedex</h1>
+		<button class="btn-filter"  ng-click="showFilter()">Filter by type</button>
+	</header>
+	
+	<div class="filter" style="display:{{filterVisible}}">	
+		<div class="filter-name"><input type="checkbox" ng-checked="true" ng-model="selectedAll"  ng-click="sellectAll()"><span>{{sellectAllChange}}</span></div>		
+		<div class="filter-name" ng-repeat="type in types"><input type="checkbox" ng-model="selectedType" ng-click="toTypes()" ng-checked="selectedAll" ><span>{{type}}</span></div>		
+		
+	</div>
+
+	<div class="main">
+
+		<div class="col first-col">		
+		</div>		
+
+		<div class="col second-col">
+			
+			<div class="container">
+				<div class="container-list" ng-repeat="pokemon in pokemons | filter:filterByType" >
+					
+					<div class="element-list" ng-click="showDetail(pokemon)">
+						
+						<img data-ng-src="{{'http://pokeapi.co/media/img/' + pokemon.id + '.png'}}" alt="{{pokemon.name}}" width="120px" height="120px">
+						<h2 class="pokemon-name">{{pokemon.name | capitalizeFirstLetter}}</h2>
+						<div class="types">
+							<span class=" type " style="{{'background-color: '+ typesColor[types.type.name]}}" ng-repeat="types in pokemon.types">{{types.type.name}}</span>					
+						</div>
+						
+					</div>
+
+				</div>
+			</div>
+
+				
+				<button class="btn-load-more" ng-click="loadMore()">Load More</button>
+			</div>
+
+		
+
+		<div class="col third-col">
+			
+			<div class="info" style="display:{{infoVisible}};" ng-click = "closeInfo()">
+				<img src="{{'http://pokeapi.co/media/img/' + infoPokemon.id + '.png'}}" alt="{{infoPokemon.name}}">
+				<p class="info-pokemon-name">{{infoPokemon.name | capitalizeFirstLetter}}</p>
+				<table class="info-detail" cellpadding="0" cellspacing="0">
+					<tr class="info-row">
+						<td class="info-txt">Type</td>
+						<td class="info-value"><p  ng-repeat="types in infoPokemon.types"><span class="type" style="{{'background-color: '+ typesColor[types.type.name]}}">{{types.type.name}}</span></p></td>
+					</tr>
+					<tr class="info-row" ng-repeat="val in infoPokemon.stats" >
+						<td class="info-txt">{{val.stat.name | capitalizeFirstLetter}}</td>
+						<td class="info-value">{{val.base_stat}}</td>
+					</tr>															
+					<tr class="info-row">
+						<td class="info-txt">Weight</td>
+						<td class="info-value">{{infoWeight}}</td>
+					</tr>
+					<tr class="info-row">
+						<td class="info-txt">Total Moves</td>
+						<td class="info-value">{{infoTotalMoves}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
