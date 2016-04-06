@@ -8,7 +8,7 @@ pokemonListApp
 	.controller('pokemonListCtrl', function ($scope, $http) {
 			
 	//POKEMONS
-			var limit = 3;
+			var limit = 15;
 			var offset = 0;
 			$scope.allSelectedType =[];
 			$scope.forLoadMore = [];
