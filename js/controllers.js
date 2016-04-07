@@ -94,16 +94,8 @@ pokemonListApp
 
 			$http.get('http://pokeapi.co/api/v2/type/').success(function(data){  						
 					for(i = 0; i < data.results.length; i++){
-						
 						$scope.types.push(data.results[i].name);
 						$scope.allSelectedType.push(data.results[i].name);						
-						
-
-						// var color = getRandomColor();
-						// var typeName = data.results[i].name;
-						// $scope.typesColor = typeName;
-				 //$scope.typesColor.typeName = data.results[i].name;
-				// $scope.typesColor.typeName.color = getRandomColor();
 					}
 						
 					for (i = 0; i < $scope.types.length; i++){
@@ -138,8 +130,7 @@ pokemonListApp
 
 				for(var i = 0; i < pokemon.types.length; i++){
 					for(x = 0; x < $scope.allSelectedType.length; x++){
-						if(pokemon.types[i].type.name == $scope.allSelectedType[x]) {							
-							// console.log(pokemon.types[i].type.name);
+						if(pokemon.types[i].type.name == $scope.allSelectedType[x]) {														
 							return true;						
 						}
 					}

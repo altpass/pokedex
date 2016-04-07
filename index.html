@@ -3,10 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pokedex </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/responsive.css">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
-	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
   	<script src="js/controllers.js"></script>
   	
@@ -15,7 +16,7 @@
 <body data-ng-controller="pokemonListCtrl">
 	<header>
 		<h1>Pokedex</h1>
-		<button class="btn-filter"  ng-click="showFilter()">Filter by type</button>
+		<button class="btn-filter"  ng-click="showFilter()"><span class="filter-icon"><i class="fa fa-filter"></i></span><span class="filter-sign">Filter by type</span></button>
 	</header>
 	
 	<div class="filter" style="display:{{filterVisible}}">	
@@ -26,7 +27,7 @@
 
 	<div class="main">
 
-		<div class="col first-col">		
+		<div class="col side-col left-col">		
 		</div>		
 
 		<div class="col second-col">
@@ -45,15 +46,15 @@
 					</div>
 
 				</div>
+				<button class="btn-load-more" ng-click="loadMore()">Load More</button>
 			</div>
 
 				
-				<button class="btn-load-more" ng-click="loadMore()">Load More</button>
 			</div>
 
 		
 
-		<div class="col third-col">
+		<div class="col side-col">
 			
 			<div class="info" style="display:{{infoVisible}};" ng-click = "closeInfo()">
 				<img src="{{'http://pokeapi.co/media/img/' + infoPokemon.id + '.png'}}" alt="{{infoPokemon.name}}">
@@ -78,6 +79,8 @@
 				</table>
 			</div>
 		</div>
+		
+
 	</div>
 </body>
 </html>
